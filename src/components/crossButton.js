@@ -2,7 +2,7 @@ import React from 'react';
 import {Button} from "react-native";
 
 
-function crossButton() {
+function CrossButton() {
   return (
     <Button 
       title={"Button"}
@@ -10,4 +10,4 @@ function crossButton() {
   )
 }
 
-export default crossButton
+export default CrossButton

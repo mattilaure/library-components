@@ -1,7 +1,9 @@
-import CrossButton from "./CrossButton";
-import CrossView from "./CrossView";
+import CrossButton from "./button/CrossButton";
+import CrossInputBox from "./inputBox/CrossInputBox";
+import CrossText from "./text/CrossText";
 
 export {
     CrossButton,
-    CrossView
+    CrossText,
+    CrossInputBox
 }

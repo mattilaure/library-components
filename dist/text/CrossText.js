@@ -7,10 +7,8 @@ exports.default = void 0;
 var _react = _interopRequireDefault(require("react"));
 var _reactNative = require("react-native");
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-function CrossButton() {
-  return /*#__PURE__*/_react.default.createElement(_reactNative.Button, {
-    title: "Button"
-  });
+function CrossText(props) {
+  return /*#__PURE__*/_react.default.createElement(_reactNative.Text, null, props.children);
 }
-var _default = CrossButton;
+var _default = CrossText;
 exports.default = _default;

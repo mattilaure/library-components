@@ -3,6 +3,7 @@ import './App.css';
 import  CrossText  from './components/text/CrossText';
 import CrossButton from './components/button/CrossButton';
 import CrossInputBox from './components/inputBox/CrossInputBox';
+import CrossAnimation from './components/animation/CrossAnimation';
 
 
 function App() {
@@ -31,6 +32,8 @@ function App() {
         placeholder={"placeholder"}
         callback={print}
       />
+
+      <CrossAnimation />
     </div>
   );
 }

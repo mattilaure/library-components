@@ -1,23 +1,36 @@
-import logo from './logo.svg';
+
 import './App.css';
+import  CrossText  from './components/text/CrossText';
+import CrossButton from './components/button/CrossButton';
+import CrossInputBox from './components/inputBox/CrossInputBox';
+
 
 function App() {
+
+  const click = () =>{
+    console.log('click');
+  }
+
+  const print = (e)=>{
+    console.log(e);
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <CrossText>
+        Ciao
+      </CrossText>
+
+      <CrossButton callback={click}>
+        <CrossText>
+          Click
+        </CrossText>
+      </CrossButton> 
+
+      <CrossInputBox 
+        placeholder={"placeholder"}
+        callback={print}
+      />
     </div>
   );
 }

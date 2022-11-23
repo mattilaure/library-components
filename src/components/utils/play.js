@@ -12,8 +12,23 @@ export function play(playerChoice){
     // 1-> forbice
     // 2-> sasso
     let cpuChoice=Math.floor(Math.random()*3)
-    console.log("Gioca la partita. CPU sceglie:", cpuChoice, ". Player sceglie: ",playerChoice)
-    const result=RES[cpuChoice][playerChoice]
+    let cpuChoiceToString=''
+    switch(cpuChoice){
+        case 0:
+            cpuChoiceToString="Carta"
+            break;
+        case 1:
+            cpuChoiceToString="Forbice"
+            break;  
+        case 2:
+            cpuChoiceToString="Sasso"
+            break;
+    }
+    console.log("Gioca la partita. CPU sceglie:", cpuChoiceToString, ". Player sceglie: ",playerChoice)
+    const result={
+        resultGame:RES[cpuChoice][playerChoice],
+        cpu:cpuChoiceToString
+    }
     
     return result
 }

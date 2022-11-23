@@ -5,7 +5,7 @@ function CrossButton(props) {
 
   const handleClick = (e) => {
       if(props.callback){
-          props.callback(e)
+        props.callback(e,props.label)
       }
   }
 

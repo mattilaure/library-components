@@ -3,11 +3,11 @@ import { TextInput } from 'react-native';
 
 function CrossInputBox(props) {
 
-    const handleChange = (e) => {
-        if(props.callback){
-            props.callback(e.target.value)
-        }
-    }
+  const handleChange = (e) => {
+      if(props.callback){
+          props.callback(e.target.value)
+      }
+  }
 
   return (
     <TextInput 

@@ -4,8 +4,6 @@ import CrossButton from '../button/CrossButton';
 import Game from '../game/Game';
 import CrossInputBox from '../inputBox/CrossInputBox'
 
-
-
 function Home() {
   const [visibile, setVisible]=useState(false)
   const [name, setName]=useState("")
@@ -27,7 +25,7 @@ function Home() {
           callback={handleChange}
           style={inputStyle}
       />
-      <CrossButton callback={startGame} style={buttonStyle} label={"Inserisci nome"}/>
+      <CrossButton callback={startGame} style={buttonStyle} label={"Inserisci nome"} />
       {visibile ?
         <Game name={name}/>
         :

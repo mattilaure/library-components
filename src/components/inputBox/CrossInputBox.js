@@ -13,6 +13,7 @@ function CrossInputBox(props) {
     <TextInput 
         placeholder={props.placeholder}
         onChange={handleChange}
+        style={props.style}
     />
   )
 }

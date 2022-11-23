@@ -38,24 +38,27 @@ function Game(props) {
     }
 
     //Setto la scelta del player
-    const setChoice=(e)=>{
-        let pChoose=null
-        console.log(e.target.innerText)
-        switch(e.target.innerText){
-            case "Carta":
-                pChoose=0
-                break;
-            case "Forbice":
-                pChoose=1
-                break;
-            case "Sasso":
-                pChoose=2
-                break;
-        }
+    const setPaperChoice=(e)=>{
         setState({
             ...state,
             playerTempChoice:e.target.innerText,
-            choice:pChoose
+            choice:0
+        })
+    }
+      //Setto la scelta del player
+      const setScissorsChoice=(e)=>{
+        setState({
+            ...state,
+            playerTempChoice:e.target.innerText,
+            choice:1
+        })
+    }
+      //Setto la scelta del player
+      const setRockChoice=(e)=>{
+        setState({
+            ...state,
+            playerTempChoice:e.target.innerText,
+            choice:2
         })
     }
 
@@ -64,9 +67,9 @@ function Game(props) {
             <CrossText>{props.name} sta giocando contro la CPU</CrossText>
             <View style={style.inputContainer}>
                 <View  style={style.buttonsCoiceContainer}>
-                    <CrossButton callback={setChoice} style={style.buttonStyle} label={"Carta"} />
-                    <CrossButton callback={setChoice} style={style.buttonStyle} label={"Forbice"} />
-                    <CrossButton callback={setChoice} style={style.buttonStyle} label={"Sasso"} />
+                    <CrossButton callback={setPaperChoice} style={style.buttonStyle} label={"Carta"} />
+                    <CrossButton callback={setScissorsChoice} style={style.buttonStyle} label={"Forbice"} />
+                    <CrossButton callback={setRockChoice} style={style.buttonStyle} label={"Sasso"} />
                 </View>
 
                 <CrossText>Hai scelto: {state.playerTempChoice}</CrossText>

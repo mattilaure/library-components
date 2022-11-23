@@ -2,8 +2,6 @@ import { StyleSheet } from "react-native-web";
 
 export default StyleSheet.create({
     gameContainer: {
-        flex: 1,
-        height: '100%',
         flexDirection: 'column',
         alignItems: 'center'
     },

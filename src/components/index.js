@@ -1,11 +1,11 @@
 import CrossButton from "./button/CrossButton";
 import CrossInputBox from "./inputBox/CrossInputBox";
 import CrossText from "./text/CrossText";
-import CrossAnimation from "./animation/CrossAnimation";
+import Home from "./home/Home";
 
 export {
     CrossButton,
     CrossText,
     CrossInputBox,
-    CrossAnimation
+    Home
 }

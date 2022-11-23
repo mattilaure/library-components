@@ -1,41 +1,49 @@
-import React from 'react';
-import {View,Text} from "react-native"
+import React,{useState} from 'react';
+import { Text } from 'react-native'
 import CrossButton from '../button/CrossButton';
-import CrossInputBox from '../inputBox/CrossInputBox';
-import style from "./homeStyle";
+import Game from '../game/Game';
+import CrossInputBox from '../inputBox/CrossInputBox'
+
+
 
 function Home() {
-  const buttonStyle={
-    width:100,
-    backgroundColor:'red'
-  }
-  const inputStyle={
-    width:250,
-    height:50,
-    padding: 1
-  }
-
+  const [visibile, setVisible]=useState(false)
+  const [name, setName]=useState("")
+  
+  let nameTemp=""
   const handleChange=(e)=>{
-    console.log(e)
+    nameTemp=e
   }
-  const handleClick=()=>{
-    console.log("Click");
+  const startGame=()=>{
+    setName(nameTemp)
+    setVisible(true)
   }
 
   return (
-    <View style={style.homeContainer}>
-        <Text>Sasso Carta Forbice</Text>
-
-        <View style={style.inputContainer}>
-            <CrossInputBox 
-              placeholder={"Inserire username"}
-              callback={handleChange}
-              style={inputStyle}
-            />
-            <CrossButton callback={handleClick} style={buttonStyle} label={"Gioca"}/>
-        </View>
-    </View>
+    <>
+      <Text>Sasso Carta Forbice</Text>
+      <CrossInputBox 
+          placeholder={"Inserire username"}
+          callback={handleChange}
+          style={inputStyle}
+      />
+      <CrossButton callback={startGame} style={buttonStyle} label={"Inserisci nome"}/>
+      {visibile ?
+        <Game name={name}/>
+        :
+        <></>
+      }
+    </>
+    
   )
 }
-
+const inputStyle={
+  width:250,
+  height:50,
+  padding: 1
+}
+const buttonStyle={
+  width:100,
+  backgroundColor:'red'
+}
 export default Home

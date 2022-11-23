@@ -3,9 +3,9 @@ import { Pressable, Text } from 'react-native';
 
 function CrossButton(props) {
 
-  const handleClick = () => {
+  const handleClick = (e) => {
       if(props.callback){
-          props.callback()
+          props.callback(e)
       }
   }
 

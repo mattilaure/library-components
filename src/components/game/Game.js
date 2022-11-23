@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import {View} from 'react-native'
+import {View, Platform} from 'react-native'
 import CrossButton from '../button/CrossButton'
 import CrossText from '../text/CrossText'
 import style from './gameStyle'
@@ -13,7 +13,8 @@ function Game(props) {
         choice:null,
         cpuChoice:null,
         playerNameResult:"",
-        playerTempChoice:""
+        playerTempChoice:"",
+        winner:"",
     })
 
     const handleClick=()=>{
@@ -24,7 +25,7 @@ function Game(props) {
                 setState({
                     ...state,
                     cpuChoice:result.cpu,
-                    playerNameResult:'Hai vinto'
+                    playerNameResult:'Round vinto dal giocatore'
                 })
                 break;
             case 'p':
@@ -39,22 +40,41 @@ function Game(props) {
                 setState({
                     ...state,
                     cpuChoice:result.cpu,
-                    playerNameResult:'Hai perso'
+                    playerNameResult:'Round vinto dalla CPU'
                 })
                 break;
         }
         checkWinner()
     }
+
     function checkWinner(){
         if(playerPoints>=2){
-            console.log(props.name, " vince!")
             playerPoints=0
             cpuPoints=0
+            setState({
+                ...state,
+                winner:props.name
+            })
         }else if(cpuPoints>=2){
-            console.log("CPU vince!")
             playerPoints=0
             cpuPoints=0
+            setState({
+                ...state,
+                winner:"CPU"
+            })
         }
+    }
+
+    function reset(){
+        playerPoints=0
+        cpuPoints=0
+        setState({
+            choice:null,
+            cpuChoice:null,
+            playerNameResult:"",
+            playerTempChoice:"",
+            winner:"",
+        })
     }
 
     //Setto la scelta del player
@@ -92,7 +112,10 @@ function Game(props) {
                 <CrossButton callback={handleClick} style={[style.buttonStyle,style.buttonPlayStyle]} label={"Gioca"}/>
                 <CrossText>La CPU ha scelto: {state.cpuChoice}</CrossText>
                 <CrossText>{state.playerNameResult}</CrossText>
+                <CrossText>Ha vinto: {state.winner}</CrossText>
             </View>
+
+            <CrossButton callback={reset} style={style.buttonStyle} label={"Reset"}/>
         </View>
     )
 }

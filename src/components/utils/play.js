@@ -24,7 +24,7 @@ export function play(playerChoice){
             cpuChoiceToString="Sasso"
             break;
     }
-    console.log("Gioca la partita. CPU sceglie:", cpuChoiceToString, ". Player sceglie: ",playerChoice)
+    console.log("Gioca la partita. CPU sceglie:", cpuChoice, ". Player sceglie: ",playerChoice)
     const result={
         resultGame:RES[cpuChoice][playerChoice],
         cpu:cpuChoiceToString

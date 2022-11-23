@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useRef, useState} from 'react'
 import {View} from 'react-native'
 import CrossButton from '../button/CrossButton'
 import CrossText from '../text/CrossText'
@@ -40,7 +40,8 @@ function Game(props) {
     //Setto la scelta del player
     const setChoice=(e)=>{
         let pChoose=null
-        switch(e.target.textContent){
+        console.log(e.target.innerText)
+        switch(e.target.innerText){
             case "Carta":
                 pChoose=0
                 break;
@@ -53,7 +54,7 @@ function Game(props) {
         }
         setState({
             ...state,
-            playerTempChoice:e.target.textContent,
+            playerTempChoice:e.target.innerText,
             choice:pChoose
         })
     }
@@ -63,9 +64,9 @@ function Game(props) {
             <CrossText>{props.name} sta giocando contro la CPU</CrossText>
             <View style={style.inputContainer}>
                 <View  style={style.buttonsCoiceContainer}>
-                    <CrossButton callback={setChoice} style={style.buttonStyle} label={"Carta"}/>
-                    <CrossButton callback={setChoice} style={style.buttonStyle} label={"Forbice"}/>
-                    <CrossButton callback={setChoice} style={style.buttonStyle} label={"Sasso"}/>
+                    <CrossButton callback={setChoice} style={style.buttonStyle} label={"Carta"} />
+                    <CrossButton callback={setChoice} style={style.buttonStyle} label={"Forbice"} />
+                    <CrossButton callback={setChoice} style={style.buttonStyle} label={"Sasso"} />
                 </View>
 
                 <CrossText>Hai scelto: {state.playerTempChoice}</CrossText>

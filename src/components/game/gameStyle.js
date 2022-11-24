@@ -28,9 +28,9 @@ export const webStyle =  StyleSheet.create({
 
 export const mobileStyle = StyleSheet.create({
     gameContainer: {
-        flex: 1,
         padding: 5,
-        backgroundColor: '#c85260' ,
+        width: '100%',
+        backgroundColor: 'transparent' ,
         flexDirection: 'column',
         alignItems: 'center',
 

@@ -1,7 +1,7 @@
 {
   "name": "library-components-mdb",
   "main": "dist/index.js",
-  "version": "0.2.15",
+  "version": "0.2.16",
   "private": false,
   "files": [
     "dist",

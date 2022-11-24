@@ -33,9 +33,9 @@ var webStyle = _reactNative.StyleSheet.create({
 exports.webStyle = webStyle;
 var mobileStyle = _reactNative.StyleSheet.create({
   gameContainer: {
-    flex: 1,
     padding: 5,
-    backgroundColor: '#c85260',
+    width: '100%',
+    backgroundColor: 'transparent',
     flexDirection: 'column',
     alignItems: 'center'
   }

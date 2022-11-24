@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import {View, Platform} from 'react-native'
 import CrossButton from '../button/CrossButton'
 import CrossText from '../text/CrossText'

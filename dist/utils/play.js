@@ -25,7 +25,6 @@ function play(playerChoice) {
       cpuChoiceToString = "Sasso";
       break;
   }
-  console.log("Gioca la partita. CPU sceglie:", cpuChoice, ". Player sceglie: ", playerChoice);
   var result = {
     resultGame: RES[cpuChoice][playerChoice],
     cpu: cpuChoiceToString

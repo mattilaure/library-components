@@ -81,10 +81,10 @@ function Game(props) {
 
     async function storeData(win){
         const type = typeof(isUnique(ranking,props.name))
-        console.log(type);
+        const currentUser = isUnique(ranking,props.name);
        if(type === "number"){ //elemento esiste già
         if(win){
-            ranking[type].wins ++
+            ranking[currentUser].wins ++
         }
        }else{ //elemento non esiste
         const newObj = isUnique(ranking,props.name)

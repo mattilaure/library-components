@@ -3,13 +3,19 @@ export const isUnique = (ranking,username) => {
         username: username,
         wins: 0
     };
-    ranking.forEach((element,index) => {
+    let isUnique = true;
+    let index = null;
+    ranking.forEach((element,i) => {
         if(element.username === username){
-            console.log('uguale');
-           return index
-        }else{
-            return object
+            isUnique = false;
+           index = i
         }
     });
+    
+    if(isUnique){
+        return object
+    }else{
+        return index
+    }
     
 }

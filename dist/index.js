@@ -27,8 +27,28 @@ Object.defineProperty(exports, "Game", {
     return _Game.default;
   }
 });
+Object.defineProperty(exports, "getFromStorage", {
+  enumerable: true,
+  get: function get() {
+    return _storage.getFromStorage;
+  }
+});
+Object.defineProperty(exports, "isUnique", {
+  enumerable: true,
+  get: function get() {
+    return _isUnique.isUnique;
+  }
+});
+Object.defineProperty(exports, "setInStorage", {
+  enumerable: true,
+  get: function get() {
+    return _storage.setInStorage;
+  }
+});
 var _CrossButton = _interopRequireDefault(require("./button/CrossButton"));
 var _CrossInputBox = _interopRequireDefault(require("./inputBox/CrossInputBox"));
 var _CrossText = _interopRequireDefault(require("./text/CrossText"));
 var _Game = _interopRequireDefault(require("./game/Game"));
+var _storage = require("./utils/storage");
+var _isUnique = require("./utils/isUnique");
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }

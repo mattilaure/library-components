@@ -5,14 +5,14 @@ function CrossInputBox(props) {
 
   const handleChange = (e) => {
       if(props.callback){
-          props.callback(e.target.value)
+          props.callback(e)
       }
   }
 
   return (
     <TextInput 
         placeholder={props.placeholder}
-        onChange={handleChange}
+        onChangeText={handleChange}
         style={props.style}
     />
   )

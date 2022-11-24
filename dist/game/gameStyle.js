@@ -3,12 +3,15 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = void 0;
-var _reactNativeWeb = require("react-native-web");
-var _default = _reactNativeWeb.StyleSheet.create({
+exports.webStyle = exports.mobileStyle = void 0;
+var _reactNative = require("react-native");
+var webStyle = _reactNative.StyleSheet.create({
   gameContainer: {
     flexDirection: 'column',
-    alignItems: 'center'
+    alignItems: 'center',
+    width: '100vw',
+    height: '100vh',
+    backgroundColor: '#c85260'
   },
   inputContainer: {
     flexDirection: 'column'
@@ -27,4 +30,14 @@ var _default = _reactNativeWeb.StyleSheet.create({
     alignSelf: 'center'
   }
 });
-exports.default = _default;
+exports.webStyle = webStyle;
+var mobileStyle = _reactNative.StyleSheet.create({
+  gameContainer: {
+    flex: 1,
+    padding: 5,
+    backgroundColor: '#c85260',
+    flexDirection: 'column',
+    alignItems: 'center'
+  }
+});
+exports.mobileStyle = mobileStyle;

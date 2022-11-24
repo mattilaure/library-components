@@ -1,9 +1,12 @@
-import { StyleSheet } from "react-native-web";
+import { StyleSheet,Dimensions,Platform } from "react-native";
 
-export default StyleSheet.create({
+export const webStyle =  StyleSheet.create({
     gameContainer: {
         flexDirection: 'column',
-        alignItems: 'center'
+        alignItems: 'center',
+        width: '100vw',
+        height: '100vh',
+        backgroundColor: '#c85260' 
     },
     inputContainer: {
         flexDirection: 'column'
@@ -22,3 +25,15 @@ export default StyleSheet.create({
         alignSelf:'center'
     }
 })
+
+export const mobileStyle = StyleSheet.create({
+    gameContainer: {
+        flex: 1,
+        padding: 5,
+        backgroundColor: '#c85260' ,
+        flexDirection: 'column',
+        alignItems: 'center',
+
+    }
+})
+

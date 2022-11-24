@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react'
 import {View, Platform} from 'react-native'
 import CrossButton from '../button/CrossButton'
 import CrossText from '../text/CrossText'
-import style from './gameStyle'
+import {mobileStyle, webStyle} from './gameStyle'
 import { play } from '../utils/play';
 import {setInStorage,getFromStorage} from "../utils/storage";
 import {isUnique} from "../utils/isUnique";
@@ -132,24 +132,25 @@ function Game(props) {
         })
     }
 
+
     return (
-        <View style={style.gameContainer}>
+        <View style={Platform.OS === "web" ? webStyle.gameContainer : mobileStyle.gameContainer}>
             <CrossText>{props.name} sta giocando contro la CPU</CrossText>
-            <View style={style.inputContainer}>
-                <View  style={style.buttonsCoiceContainer}>
-                    <CrossButton callback={setChoice} style={style.buttonStyle} label={"Carta"} />
-                    <CrossButton callback={setChoice} style={style.buttonStyle} label={"Forbice"} />
-                    <CrossButton callback={setChoice} style={style.buttonStyle} label={"Sasso"} />
+            <View style={webStyle.inputContainer}>
+                <View  style={webStyle.buttonsCoiceContainer}>
+                    <CrossButton callback={setChoice} style={webStyle.buttonStyle} label={"Carta"} />
+                    <CrossButton callback={setChoice} style={webStyle.buttonStyle} label={"Forbice"} />
+                    <CrossButton callback={setChoice} style={webStyle.buttonStyle} label={"Sasso"} />
                 </View>
 
                 <CrossText>Hai scelto: {state.playerTempChoice}</CrossText>
-                <CrossButton callback={handleClick} style={[style.buttonStyle,style.buttonPlayStyle]} label={"Gioca"}/>
+                <CrossButton callback={handleClick} style={[webStyle.buttonStyle,webStyle.buttonPlayStyle]} label={"Gioca"}/>
                 <CrossText>La CPU ha scelto: {state.cpuChoice}</CrossText>
                 <CrossText>{state.playerNameResult}</CrossText>
                 <CrossText>Ha vinto: {state.winner}</CrossText>
             </View>
 
-            <CrossButton callback={reset} style={style.buttonStyle} label={"Reset"}/>
+            <CrossButton callback={reset} style={webStyle.buttonStyle} label={"Reset"}/>
         </View>
     )
 }

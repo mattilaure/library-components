@@ -1,7 +1,7 @@
 {
   "name": "library-components-mdb",
   "main": "dist/index.js",
-  "version": "0.2.11",
+  "version": "0.2.15",
   "private": false,
   "files": [
     "dist",
@@ -58,6 +58,7 @@
   "peerDependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-scripts": "5.0.1"
+    "react-scripts": "5.0.1",
+    "react-native-web": "^0.18.10"
   }
 }

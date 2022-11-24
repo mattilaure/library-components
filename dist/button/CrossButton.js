@@ -16,7 +16,11 @@ function CrossButton(props) {
   return /*#__PURE__*/_react.default.createElement(_reactNative.Pressable, {
     onPress: handleClick,
     style: props.style
-  }, /*#__PURE__*/_react.default.createElement(_reactNative.Text, null, props.label));
+  }, /*#__PURE__*/_react.default.createElement(_reactNative.Text, {
+    style: {
+      color: 'white'
+    }
+  }, props.label));
 }
 var _default = CrossButton;
 exports.default = _default;

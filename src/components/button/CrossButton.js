@@ -11,7 +11,9 @@ function CrossButton(props) {
 
   return (
     <Pressable onPress={handleClick} style={props.style}>
-        <Text>{props.label}</Text>
+        <Text style={{
+          color:'white'
+        }}>{props.label}</Text>
     </Pressable>
   )
 }

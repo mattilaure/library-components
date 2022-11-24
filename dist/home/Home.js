@@ -40,19 +40,22 @@ function Home() {
   }
   function _storeData() {
     _storeData = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+      var ranking;
       return _regeneratorRuntime().wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
               _context.next = 2;
-              return (0, _storage.setInStorage)([{
-                username: "mattia",
-                wins: 3
-              }, {
-                username: "daniele",
-                wins: 2
-              }]);
+              return (0, _storage.getFromStorage)("ranking");
             case 2:
+              ranking = _context.sent;
+              if (ranking) {
+                _context.next = 6;
+                break;
+              }
+              _context.next = 6;
+              return (0, _storage.setInStorage)([]);
+            case 6:
             case "end":
               return _context.stop();
           }
@@ -69,7 +72,7 @@ function Home() {
     setName(nameTemp);
     setVisible(true);
   };
-  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(_reactNative.Text, null, "Sasso Carta Forbice"), /*#__PURE__*/_react.default.createElement(_CrossInputBox.default, {
+  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, !visibile ? /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(_reactNative.Text, null, "Sasso Carta Forbice"), /*#__PURE__*/_react.default.createElement(_CrossInputBox.default, {
     placeholder: "Inserire username",
     callback: handleChange,
     style: inputStyle
@@ -77,9 +80,9 @@ function Home() {
     callback: startGame,
     style: buttonStyle,
     label: "Inserisci nome"
-  }), visibile ? /*#__PURE__*/_react.default.createElement(_Game.default, {
+  })) : /*#__PURE__*/_react.default.createElement(_Game.default, {
     name: name
-  }) : /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null));
+  }));
 }
 var inputStyle = {
   width: 250,
@@ -88,7 +91,7 @@ var inputStyle = {
 };
 var buttonStyle = {
   width: 100,
-  backgroundColor: 'red'
+  backgroundColor: "red"
 };
 var _default = Home;
 exports.default = _default;

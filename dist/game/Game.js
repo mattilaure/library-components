@@ -8,7 +8,7 @@ var _react = _interopRequireWildcard(require("react"));
 var _reactNative = require("react-native");
 var _CrossButton = _interopRequireDefault(require("../button/CrossButton"));
 var _CrossText = _interopRequireDefault(require("../text/CrossText"));
-var _gameStyle = _interopRequireDefault(require("./gameStyle"));
+var _gameStyle = require("./gameStyle");
 var _play = require("../utils/play");
 var _storage = require("../utils/storage");
 var _isUnique = require("../utils/isUnique");
@@ -180,30 +180,30 @@ function Game(props) {
     }));
   };
   return /*#__PURE__*/_react.default.createElement(_reactNative.View, {
-    style: _gameStyle.default.gameContainer
+    style: _reactNative.Platform.OS === "web" ? _gameStyle.webStyle.gameContainer : _gameStyle.mobileStyle.gameContainer
   }, /*#__PURE__*/_react.default.createElement(_CrossText.default, null, props.name, " sta giocando contro la CPU"), /*#__PURE__*/_react.default.createElement(_reactNative.View, {
-    style: _gameStyle.default.inputContainer
+    style: _gameStyle.webStyle.inputContainer
   }, /*#__PURE__*/_react.default.createElement(_reactNative.View, {
-    style: _gameStyle.default.buttonsCoiceContainer
+    style: _gameStyle.webStyle.buttonsCoiceContainer
   }, /*#__PURE__*/_react.default.createElement(_CrossButton.default, {
     callback: setChoice,
-    style: _gameStyle.default.buttonStyle,
+    style: _gameStyle.webStyle.buttonStyle,
     label: "Carta"
   }), /*#__PURE__*/_react.default.createElement(_CrossButton.default, {
     callback: setChoice,
-    style: _gameStyle.default.buttonStyle,
+    style: _gameStyle.webStyle.buttonStyle,
     label: "Forbice"
   }), /*#__PURE__*/_react.default.createElement(_CrossButton.default, {
     callback: setChoice,
-    style: _gameStyle.default.buttonStyle,
+    style: _gameStyle.webStyle.buttonStyle,
     label: "Sasso"
   })), /*#__PURE__*/_react.default.createElement(_CrossText.default, null, "Hai scelto: ", state.playerTempChoice), /*#__PURE__*/_react.default.createElement(_CrossButton.default, {
     callback: handleClick,
-    style: [_gameStyle.default.buttonStyle, _gameStyle.default.buttonPlayStyle],
+    style: [_gameStyle.webStyle.buttonStyle, _gameStyle.webStyle.buttonPlayStyle],
     label: "Gioca"
   }), /*#__PURE__*/_react.default.createElement(_CrossText.default, null, "La CPU ha scelto: ", state.cpuChoice), /*#__PURE__*/_react.default.createElement(_CrossText.default, null, state.playerNameResult), /*#__PURE__*/_react.default.createElement(_CrossText.default, null, "Ha vinto: ", state.winner)), /*#__PURE__*/_react.default.createElement(_CrossButton.default, {
     callback: reset,
-    style: _gameStyle.default.buttonStyle,
+    style: _gameStyle.webStyle.buttonStyle,
     label: "Reset"
   }));
 }

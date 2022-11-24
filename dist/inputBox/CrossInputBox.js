@@ -10,12 +10,12 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function CrossInputBox(props) {
   var handleChange = function handleChange(e) {
     if (props.callback) {
-      props.callback(e.target.value);
+      props.callback(e);
     }
   };
   return /*#__PURE__*/_react.default.createElement(_reactNative.TextInput, {
     placeholder: props.placeholder,
-    onChange: handleChange,
+    onChangeText: handleChange,
     style: props.style
   });
 }

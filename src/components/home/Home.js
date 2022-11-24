@@ -1,20 +1,45 @@
-import React,{useState} from 'react';
+import React,{useEffect, useState} from 'react';
 import { Text } from 'react-native'
 import CrossButton from '../button/CrossButton';
 import Game from '../game/Game';
 import CrossInputBox from '../inputBox/CrossInputBox'
 
+
+//storage
+import {setInStorage} from "../utils/storage";
+
+
 function Home() {
   const [visibile, setVisible]=useState(false)
   const [name, setName]=useState("")
+
+  useEffect(()=>{
+    storeData()
+  },[])
+
+  async function storeData(){
+    await setInStorage([
+      {
+        username: "mattia",
+        wins: 3
+      },
+      {
+        username: "daniele",
+        wins: 2
+      }
+    ])
+  }
+
+
   
   let nameTemp=""
   const handleChange=(e)=>{
-    nameTemp=e
+    nameTemp=e.toLowerCase()
   }
   const startGame=()=>{
-    setName(nameTemp)
-    setVisible(true)
+
+      setName(nameTemp)
+      setVisible(true)
   }
 
   return (

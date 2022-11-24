@@ -1,12 +1,16 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import {View, Platform} from 'react-native'
 import CrossButton from '../button/CrossButton'
 import CrossText from '../text/CrossText'
 import style from './gameStyle'
 import { play } from '../utils/play';
+import {setInStorage,getFromStorage} from "../utils/storage";
+import {isUnique} from "../utils/isUnique";
 
 let playerPoints=0
 let cpuPoints=0
+let ranking = [];
+
 
 function Game(props) {
     const [state,setState]=useState({
@@ -16,6 +20,14 @@ function Game(props) {
         playerTempChoice:"",
         winner:"",
     })
+
+    useEffect(()=>{
+        getData()
+    },[])
+
+    async function getData(){
+        ranking = await getFromStorage();
+      }
 
     const handleClick=()=>{
         let result=play(state.choice)
@@ -49,6 +61,7 @@ function Game(props) {
 
     function checkWinner(){
         if(playerPoints>=2){
+            storeData(true)
             playerPoints=0
             cpuPoints=0
             setState({
@@ -56,6 +69,7 @@ function Game(props) {
                 winner:props.name
             })
         }else if(cpuPoints>=2){
+            storeData(false)
             playerPoints=0
             cpuPoints=0
             setState({
@@ -63,6 +77,26 @@ function Game(props) {
                 winner:"CPU"
             })
         }
+    }
+
+    async function storeData(win){
+        const type = typeof(isUnique(ranking,props.name))
+        console.log(type);
+       if(type === "number"){ //elemento esiste già
+        if(win){
+            ranking[type].wins ++
+        }
+       }else{ //elemento non esiste
+        const newObj = isUnique(ranking,props.name)
+        if(win){
+            newObj.wins ++;
+            ranking.push(newObj)
+        }else{
+            ranking.push(newObj);
+        }
+       }
+
+       await setInStorage(ranking)
     }
 
     function reset(){

@@ -27,6 +27,12 @@ Object.defineProperty(exports, "Game", {
     return _Game.default;
   }
 });
+Object.defineProperty(exports, "Ranking", {
+  enumerable: true,
+  get: function get() {
+    return _Ranking.default;
+  }
+});
 Object.defineProperty(exports, "getFromStorage", {
   enumerable: true,
   get: function get() {
@@ -51,4 +57,5 @@ var _CrossText = _interopRequireDefault(require("./text/CrossText"));
 var _Game = _interopRequireDefault(require("./game/Game"));
 var _storage = require("./utils/storage");
 var _isUnique = require("./utils/isUnique");
+var _Ranking = _interopRequireDefault(require("./ranking/Ranking"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }

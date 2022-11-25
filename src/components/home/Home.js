@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { Text } from "react-native";
+import { Text,View } from "react-native";
 import CrossButton from "../button/CrossButton";
 import Game from "../game/Game";
 import CrossInputBox from "../inputBox/CrossInputBox";
+import Ranking from "../ranking/Ranking";
 
 //storage
 import { setInStorage, getFromStorage } from "../utils/storage";
@@ -34,7 +35,7 @@ function Home() {
   return (
     <>
       {!visibile ? (
-        <>
+        <View style={{backgroundColor: "#c85260",height:800}}>
           <Text>Sasso Carta Forbice</Text>
           <CrossInputBox
             placeholder={"Inserire username"}
@@ -46,7 +47,9 @@ function Home() {
             style={buttonStyle}
             label={"Inserisci nome"}
           />
-        </>
+
+          <Ranking />
+        </View>
       ) : (
         <Game name={name} />
       )}

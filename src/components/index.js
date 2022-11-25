@@ -4,6 +4,8 @@ import CrossText from "./text/CrossText";
 import Game from "./game/Game";
 import { getFromStorage,setInStorage } from "./utils/storage";
 import { isUnique } from "./utils/isUnique";
+import Ranking from "./ranking/Ranking";
+
 
 export {
     CrossButton,
@@ -12,6 +14,7 @@ export {
     Game,
     isUnique,
     getFromStorage,
-    setInStorage
+    setInStorage,
+    Ranking
 
 }

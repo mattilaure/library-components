@@ -4,6 +4,7 @@ export const webStyle =  StyleSheet.create({
     gameContainer: {
         flexDirection: 'column',
         alignItems: 'center',
+        justifyContent:'center',
         width: '100vw',
         height: '100vh',
         backgroundColor: '#c85260' 
@@ -12,18 +13,35 @@ export const webStyle =  StyleSheet.create({
         flexDirection: 'column'
     },
     buttonsCoiceContainer:{
-        flexDirection: 'row'
+        flexDirection: 'row',
+        
     },
-    buttonStyle:{
-        width:100,
-        height:'auto',
-        padding:5,
-        backgroundColor:'red',
-        margin:2
+    card:{
+        height: 120,
+        width:120,
+
     },
-    buttonPlayStyle:{
-        alignSelf:'center'
+    imgCont:{
+        padding: 5,
+        margin: 20
+    },
+    title:{
+        fontSize:30,
+        fontWeight: 'bold'
+    },
+    playButton:{
+        backgroundColor: "#730e25",
+        justifyContent: "center",
+        alignItems: "center",
+        alignSelf: 'center',
+        padding: 15,
+        borderRadius: 25,
+        width: 100,
+    },
+    choicesContainer:{
+        margin:10
     }
+
 })
 
 export const mobileStyle = StyleSheet.create({

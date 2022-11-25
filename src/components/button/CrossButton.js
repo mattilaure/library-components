@@ -14,6 +14,8 @@ function CrossButton(props) {
         <Text style={{
           color:'white'
         }}>{props.label}</Text>
+
+        
     </Pressable>
   )
 }

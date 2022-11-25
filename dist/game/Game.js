@@ -31,13 +31,18 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 var playerPoints = 0;
 var cpuPoints = 0;
 var ranking = [];
+var round = 1;
 function Game(props) {
   var _useState = (0, _react.useState)({
       choice: null,
       cpuChoice: null,
       playerNameResult: "",
       playerTempChoice: "",
-      winner: ""
+      winner: "",
+      currentRound: 1,
+      playerScore: 0,
+      cpuScore: 0,
+      switchScreen: false
     }),
     _useState2 = _slicedToArray(_useState, 2),
     state = _useState2[0],
@@ -69,50 +74,71 @@ function Game(props) {
   }
   var handleClick = function handleClick() {
     var result = (0, _play.play)(state.choice);
+    console.log(result);
+    round++;
     switch (result.resultGame) {
-      case 'w':
+      case "w":
         playerPoints++;
         setState(_objectSpread(_objectSpread({}, state), {}, {
           cpuChoice: result.cpu,
-          playerNameResult: 'Round vinto dal giocatore'
+          playerNameResult: "Round ".concat(state.currentRound, " vinto dal giocatore"),
+          currentRound: round,
+          playerScore: playerPoints
         }));
         break;
-      case 'p':
+      case "p":
         setState(_objectSpread(_objectSpread({}, state), {}, {
           cpuChoice: result.cpu,
-          playerNameResult: 'Pareggio! Rigioca'
+          playerNameResult: "Pareggio! Rigioca",
+          currentRound: round
         }));
         break;
-      case 'l':
+      case "l":
         cpuPoints++;
         setState(_objectSpread(_objectSpread({}, state), {}, {
           cpuChoice: result.cpu,
-          playerNameResult: 'Round vinto dalla CPU'
+          playerNameResult: "Round ".concat(state.currentRound, " vinto dalla CPU"),
+          currentRound: round,
+          cpuScore: cpuPoints
         }));
         break;
     }
-    checkWinner();
+    checkWinner(result);
   };
-  function checkWinner() {
+  function checkWinner(result) {
     if (playerPoints >= 2) {
       storeData(true);
       playerPoints = 0;
       cpuPoints = 0;
+      round = 1;
       setState(_objectSpread(_objectSpread({}, state), {}, {
-        winner: props.name
+        playerTempChoice: state.playerTempChoice,
+        cpuChoice: result.cpuChoice,
+        winner: props.name,
+        currentRound: round,
+        playerScore: playerPoints,
+        cpuScore: cpuPoints,
+        switchScreen: true
       }));
     } else if (cpuPoints >= 2) {
       storeData(false);
       playerPoints = 0;
       cpuPoints = 0;
+      round = 1;
       setState(_objectSpread(_objectSpread({}, state), {}, {
-        winner: "CPU"
+        playerTempChoice: state.playerTempChoice,
+        cpuChoice: result.cpuChoice,
+        winner: "CPU",
+        currentRound: round,
+        playerScore: playerPoints,
+        cpuScore: cpuPoints,
+        switchScreen: true
       }));
     }
   }
   function storeData(_x) {
     return _storeData.apply(this, arguments);
-  }
+  } //Setto la scelta del player
   function _storeData() {
     _storeData = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(win) {
       var type, currentUser, newObj;
@@ -148,19 +174,6 @@ function Game(props) {
     }));
     return _storeData.apply(this, arguments);
   }
-  function reset() {
-    playerPoints = 0;
-    cpuPoints = 0;
-    setState({
-      choice: null,
-      cpuChoice: null,
-      playerNameResult: "",
-      playerTempChoice: "",
-      winner: ""
-    });
-  }
-
-  //Setto la scelta del player
   var setChoice = function setChoice(text) {
     var pChoose = null;
     switch (text) {
@@ -181,31 +194,82 @@ function Game(props) {
   };
   return /*#__PURE__*/_react.default.createElement(_reactNative.View, {
     style: _reactNative.Platform.OS === "web" ? _gameStyle.webStyle.gameContainer : _gameStyle.mobileStyle.gameContainer
-  }, /*#__PURE__*/_react.default.createElement(_CrossText.default, null, props.name, " sta giocando contro la CPU"), /*#__PURE__*/_react.default.createElement(_reactNative.View, {
+  }, !state.switchScreen ? /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(_reactNative.Text, {
+    style: _gameStyle.webStyle.title
+  }, props.name, " sta giocando contro la CPU"), /*#__PURE__*/_react.default.createElement(_reactNative.Text, {
+    style: _gameStyle.webStyle.title
+  }, "Round ", state.currentRound), /*#__PURE__*/_react.default.createElement(_reactNative.View, {
     style: _gameStyle.webStyle.inputContainer
   }, /*#__PURE__*/_react.default.createElement(_reactNative.View, {
     style: _gameStyle.webStyle.buttonsCoiceContainer
-  }, /*#__PURE__*/_react.default.createElement(_CrossButton.default, {
-    callback: setChoice,
-    style: _gameStyle.webStyle.buttonStyle,
-    label: "Carta"
-  }), /*#__PURE__*/_react.default.createElement(_CrossButton.default, {
-    callback: setChoice,
-    style: _gameStyle.webStyle.buttonStyle,
-    label: "Forbice"
-  }), /*#__PURE__*/_react.default.createElement(_CrossButton.default, {
-    callback: setChoice,
-    style: _gameStyle.webStyle.buttonStyle,
-    label: "Sasso"
-  })), /*#__PURE__*/_react.default.createElement(_CrossText.default, null, "Hai scelto: ", state.playerTempChoice), /*#__PURE__*/_react.default.createElement(_CrossButton.default, {
+  }, /*#__PURE__*/_react.default.createElement(_reactNative.Pressable, {
+    onPress: function onPress() {
+      return setChoice("Carta");
+    },
+    style: _gameStyle.webStyle.imgCont
+  }, /*#__PURE__*/_react.default.createElement(_reactNative.Image, {
+    resizeMode: "contain",
+    source: require("../assets/images/paper.png"),
+    style: _gameStyle.webStyle.card
+  })), /*#__PURE__*/_react.default.createElement(_reactNative.Pressable, {
+    onPress: function onPress() {
+      return setChoice("Forbice");
+    },
+    style: _gameStyle.webStyle.imgCont
+  }, /*#__PURE__*/_react.default.createElement(_reactNative.Image, {
+    source: require("../assets/images/scissors-game.png"),
+    style: _gameStyle.webStyle.card,
+    resizeMode: "contain"
+  })), /*#__PURE__*/_react.default.createElement(_reactNative.Pressable, {
+    onPress: function onPress() {
+      return setChoice("Sasso");
+    },
+    style: _gameStyle.webStyle.imgCont
+  }, /*#__PURE__*/_react.default.createElement(_reactNative.Image, {
+    resizeMode: "contain",
+    source: require("../assets/images/rock-game.png"),
+    style: _gameStyle.webStyle.card
+  }))), /*#__PURE__*/_react.default.createElement(_reactNative.View, {
+    style: _gameStyle.webStyle.choicesContainer
+  }, /*#__PURE__*/_react.default.createElement(_reactNative.Text, null, "Hai scelto:", " ", /*#__PURE__*/_react.default.createElement(_reactNative.Text, {
+    style: {
+      fontWeight: "bold"
+    }
+  }, state.playerTempChoice)), /*#__PURE__*/_react.default.createElement(_reactNative.Text, null, "La CPU ha scelto:", " ", /*#__PURE__*/_react.default.createElement(_reactNative.Text, {
+    style: {
+      fontWeight: "bold"
+    }
+  }, state.cpuChoice))), /*#__PURE__*/_react.default.createElement(_CrossButton.default, {
     callback: handleClick,
-    style: [_gameStyle.webStyle.buttonStyle, _gameStyle.webStyle.buttonPlayStyle],
+    style: _gameStyle.webStyle.playButton,
     label: "Gioca"
-  }), /*#__PURE__*/_react.default.createElement(_CrossText.default, null, "La CPU ha scelto: ", state.cpuChoice), /*#__PURE__*/_react.default.createElement(_CrossText.default, null, state.playerNameResult), /*#__PURE__*/_react.default.createElement(_CrossText.default, null, "Ha vinto: ", state.winner)), /*#__PURE__*/_react.default.createElement(_CrossButton.default, {
-    callback: reset,
-    style: _gameStyle.webStyle.buttonStyle,
-    label: "Reset"
-  }));
+  }), /*#__PURE__*/_react.default.createElement(_reactNative.Text, {
+    style: {
+      fontSize: 20,
+      margin: 10
+    }
+  }, state.playerNameResult), /*#__PURE__*/_react.default.createElement(_reactNative.Text, {
+    style: {
+      fontSize: 20,
+      margin: 5
+    }
+  }, props.name, " - CPU : ", state.playerScore, " - ", state.cpuScore))) : /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(_reactNative.Text, null, "Ha vinto: ", state.winner), /*#__PURE__*/_react.default.createElement(_CrossButton.default, {
+    callback: function callback() {
+      setState({
+        choice: null,
+        cpuChoice: null,
+        playerNameResult: "",
+        playerTempChoice: "",
+        winner: "",
+        currentRound: 1,
+        playerScore: 0,
+        cpuScore: 0,
+        switchScreen: false
+      });
+    },
+    style: _gameStyle.webStyle.playButton,
+    label: "Rigioca"
+  })));
 }
 var _default = Game;
 exports.default = _default;
